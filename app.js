@@ -19,8 +19,8 @@ mc.connect('mongodb://admin:admin@ds229435.mlab.com:29435/realtimequiz', functio
 	if (err) return console.log(err);
 	db = database;
 
-	server.listen(port, function(){
-		console.log("Listening to port", port);
+	server.listen(process.env.PORT, function(){
+		console.log("Listening to port", process.env.PORT);
 		console.log("Connection Established !");
 		res.sendFile(__dirname + 'index.html');
 	});	
