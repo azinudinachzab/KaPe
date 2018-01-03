@@ -22,7 +22,7 @@ mc.connect('mongodb://admin:admin@ds229435.mlab.com:29435/realtimequiz', functio
 	server.listen(process.env.PORT, function(){
 		console.log("Listening to port", process.env.PORT);
 		console.log("Connection Established !");
-		res.sendFile(__dirname + 'index.html');
+		fs.sendFile(__dirname + 'index.html');
 	});	
 });
 
