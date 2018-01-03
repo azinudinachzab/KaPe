@@ -34,16 +34,16 @@ app.get('/',function (req,res){
 
 app.get('/admin', function (req,res){
 	if (token == 1){
-		res.sendFile(__dirname + 'dashboard.html');
+		res.sendFile(__dirname + '/dashboard.html');
 	}
 	else{
-		res.sendFile(__dirname + 'admin.HTML');
+		res.sendFile(__dirname + '/admin.HTML');
 	}
 });
 
 app.get('/dashboard', function(req,res){
 	if (token == 1){
-		res.sendFile(__dirname + 'dashboard.html');
+		res.sendFile(__dirname + '/dashboard.html');
 	}
 	else{
 		res.send("<script>alert('Anda Harus Login Terlebih Dahulu');</script>");
@@ -52,7 +52,7 @@ app.get('/dashboard', function(req,res){
 
 app.get('/logout', function(req,res){
     		token=0;
-    		res.sendFile(__dirname + 'admin.HTML');
+    		res.sendFile(__dirname + '/admin.HTML');
 });
 
 app.post('/dashboard', function (req,res){
@@ -64,7 +64,7 @@ app.post('/dashboard', function (req,res){
         // we have a result
         	if(req.body.password == results.password){
         		token = 1;
-				res.sendFile(__dirname + 'dashboard.html');
+				res.sendFile(__dirname + '/dashboard.html');
 			}
 			else{
 				var string = 'Password Salah';
