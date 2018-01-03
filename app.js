@@ -7,7 +7,7 @@ var bodyParser= require('body-parser');
 var mc = require('mongodb').MongoClient;
 var fs = require('fs');
 
-app.use(express.static(__dirname));
+app.use('/', express.static(__dirname + '/public'));
 
 var token =0;
 var usernames = {};
@@ -29,30 +29,30 @@ mc.connect('mongodb://admin:admin@ds229435.mlab.com:29435/realtimequiz', functio
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.get('/',function (req,res){
-	res.sendFile(__dirname + 'index.html');
+	res.sendFile(__dirname + '/index.html');
 });
 
 app.get('/admin', function (req,res){
 	if (token == 1){
-		res.sendFile(__dirname + 'dashboard.html');
+		res.sendFile(__dirname + '/dashboard.html');
 	}
 	else{
-		res.sendFile(__dirname + 'admin.html');
+		res.sendFile(__dirname + '/admin.html');
 	}
 });
 
 app.get('/dashboard', function(req,res){
 	if (token == 1){
-		res.sendFile(__dirname + 'dashboard.html');
+		res.sendFile(__dirname + '/dashboard.html');
 	}
 	else{
-		res.send("<script>alert('Anda Harus Login Terlebih Dahulu');window.location='http://localhost:4444/admin';</script>");
+		res.send("<script>alert('Anda Harus Login Terlebih Dahulu');';</script>");
 	}
 });
 
 app.get('/logout', function(req,res){
     		token=0;
-    		res.sendFile(__dirname + 'admin.html');
+    		res.sendFile(__dirname + '/admin.html');
 });
 
 app.post('/dashboard', function (req,res){
@@ -64,7 +64,7 @@ app.post('/dashboard', function (req,res){
         // we have a result
         	if(req.body.password == results.password){
         		token = 1;
-				res.sendFile(__dirname + 'dashboard.html');
+				res.sendFile(__dirname + '/dashboard.html');
 			}
 			else{
 				var string = 'Password Salah';
@@ -112,7 +112,7 @@ io.sockets.on('connection', function(socket){
 		if(pgmstart ==2){
 			request.get(kode, function(error, response, body){
 				if (error){
-					throw res.send("<script>alert('Kode Salah atau tidak terdaftar');window.location='http://localhost:4444/';</script>");
+					throw res.send("<script>alert('Kode Salah atau tidak terdaftar');</script>");
 				}
 				jsoncontent = JSON.parse(body);
 				io.sockets.in(id).emit('sendQuestions',jsoncontent);
