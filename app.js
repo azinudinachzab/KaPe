@@ -34,25 +34,25 @@ app.get('/',function (req,res){
 
 app.get('/admin', function (req,res){
 	if (token == 1){
-		res.sendFile(__dirname + '/dashboard.html');
+		res.sendFile(__dirname + 'dashboard.html');
 	}
 	else{
-		res.sendFile(__dirname + '/admin.html');
+		res.sendFile(__dirname + 'admin.html');
 	}
 });
 
 app.get('/dashboard', function(req,res){
 	if (token == 1){
-		res.sendFile(__dirname + '/dashboard.html');
+		res.sendFile(__dirname + 'dashboard.html');
 	}
 	else{
-		res.send("<script>alert('Anda Harus Login Terlebih Dahulu');';</script>");
+		res.send("<script>alert('Anda Harus Login Terlebih Dahulu');</script>");
 	}
 });
 
 app.get('/logout', function(req,res){
     		token=0;
-    		res.sendFile(__dirname + '/admin.html');
+    		res.sendFile(__dirname + 'admin.html');
 });
 
 app.post('/dashboard', function (req,res){
@@ -64,16 +64,16 @@ app.post('/dashboard', function (req,res){
         // we have a result
         	if(req.body.password == results.password){
         		token = 1;
-				res.sendFile(__dirname + '/dashboard.html');
+				res.sendFile(__dirname + 'dashboard.html');
 			}
 			else{
 				var string = 'Password Salah';
-				res.send("<script>alert('Password Salah');';</script>");
+				res.send("<script>alert('Password Salah');</script>");
 			}
     	} 
     	else {
         // we don't
-        	res.send("<script>alert('Username tidak terdaftar');';</script>");
+        	res.send("<script>alert('Username tidak terdaftar');</script>");
     	}
 	});
 });
