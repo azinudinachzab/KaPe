@@ -7,7 +7,7 @@ var bodyParser= require('body-parser');
 var mc = require('mongodb').MongoClient;
 var fs = require('fs');
 
-app.use('/', express.static(__dirname + '/public'));
+app.use(express.static(__dirname));
 
 var token =0;
 var usernames = {};
@@ -22,6 +22,7 @@ mc.connect('mongodb://admin:admin@ds229435.mlab.com:29435/realtimequiz', functio
 	server.listen(port, function(){
 		console.log("Listening to port", port);
 		console.log("Connection Established !");
+		res.sendFile(__dirname + 'index.html');
 	});	
 });
 
@@ -29,21 +30,21 @@ mc.connect('mongodb://admin:admin@ds229435.mlab.com:29435/realtimequiz', functio
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.get('/',function (req,res){
-	res.sendFile(__dirname + '/index.html');
+	res.sendFile(__dirname + 'index.html');
 });
 
 app.get('/admin', function (req,res){
 	if (token == 1){
-		res.sendFile(__dirname + '/dashboard.html');
+		res.sendFile(__dirname + 'dashboard.html');
 	}
 	else{
-		res.sendFile(__dirname + '/admin.html');
+		res.sendFile(__dirname + 'admin.html');
 	}
 });
 
 app.get('/dashboard', function(req,res){
 	if (token == 1){
-		res.sendFile(__dirname + '/dashboard.html');
+		res.sendFile(__dirname + 'dashboard.html');
 	}
 	else{
 		res.send("<script>alert('Anda Harus Login Terlebih Dahulu');window.location='http://localhost:4444/admin';</script>");
@@ -52,7 +53,7 @@ app.get('/dashboard', function(req,res){
 
 app.get('/logout', function(req,res){
     		token=0;
-    		res.sendFile(__dirname + '/admin.html');
+    		res.sendFile(__dirname + 'admin.html');
 });
 
 app.post('/dashboard', function (req,res){
@@ -64,16 +65,16 @@ app.post('/dashboard', function (req,res){
         // we have a result
         	if(req.body.password == results.password){
         		token = 1;
-				res.sendFile(__dirname + '/dashboard.html');
+				res.sendFile(__dirname + 'dashboard.html');
 			}
 			else{
 				var string = 'Password Salah';
-				res.send("<script>alert('Password Salah');window.location='http://localhost:4444/admin';</script>");
+				res.send("<script>alert('Password Salah');';</script>");
 			}
     	} 
     	else {
         // we don't
-        	res.send("<script>alert('Username tidak terdaftar');window.location='http://localhost:4444/admin';</script>");
+        	res.send("<script>alert('Username tidak terdaftar');';</script>");
     	}
 	});
 });
