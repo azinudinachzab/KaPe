@@ -37,7 +37,7 @@ app.get('/admin', function (req,res){
 		res.sendFile(__dirname + 'dashboard.html');
 	}
 	else{
-		res.sendFile(__dirname + 'admin.html');
+		res.sendFile(__dirname + 'admin.HTML');
 	}
 });
 
@@ -52,7 +52,7 @@ app.get('/dashboard', function(req,res){
 
 app.get('/logout', function(req,res){
     		token=0;
-    		res.sendFile(__dirname + 'admin.html');
+    		res.sendFile(__dirname + 'admin.HTML');
 });
 
 app.post('/dashboard', function (req,res){
