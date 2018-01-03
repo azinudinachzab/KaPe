@@ -1,0 +1,27 @@
+{
+  "name": "KaPe",
+  "version": "1.0.0",
+  "description": "ERROR: No README data found!",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Azinudin Achzab, Dinta",
+  "license": "BSD-2-Clause",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "~4.13.3",
+    "js-alert": "^1.0.4",
+    "mongodb": "^2.2.33",
+    "socket.io": "~1.3.6",
+    "sweetalert": "^2.0.8"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "github.com/azinudinachzab/KaPe"
+  },
+  "keywords": [
+    "realtimequiz"
+  ]
+}

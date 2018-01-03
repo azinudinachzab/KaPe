@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Ini dashboard admin</title>
+	<link rel='stylesheet' href='/stylesheets/bootstrap.min.css' />
+	<link rel="stylesheet" href="/stylesheets/style.css" />
+	<link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+
+<script type="text/javascript">
+
+	function storeJSON(){
+        var isi = document.getElementById("data").value;
+		$.ajax({
+    		url:"https://api.myjson.com/bins",
+    		type:"POST",
+    		data: isi,
+    		contentType:"application/json; charset=utf-8",
+    		dataType:"json",
+    		success: function(data, textStatus, jqXHR){
+    			var res = JSON.stringify(data.uri);
+                res = res.replace(/["']/g, "");
+    			alert(res);
+    			$("#data").val(json);
+    		}
+		});
+	};
+
+</script>
+
+</head>
+<body>
+<center>
+<h1>Welcome to Quiz Generator</h1>
+
+<textarea id="data" name="data" placeholder="Enter your valid JSON data here." wrap="off" style="resize: both; width: 60%;height:600px;max-height: 650px;display:block;"></textarea>
+
+<button onclick="storeJSON()" style="margin-top: 10px;">Submit</button>
+<form action="/logout" method="GET" style="margin-top: 10px;">
+    <button type="submit">Logout</button>
+</form>
+
+</center>
+</body>
+</html>
